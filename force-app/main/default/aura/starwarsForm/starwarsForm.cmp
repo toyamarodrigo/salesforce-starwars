@@ -1,0 +1,126 @@
+<aura:component controller="StarwarsController">
+  <!-- Notification (can't test in dev.console) -->
+  <lightning:notificationsLibrary aura:id="notifLib" />
+
+  <!-- Attributes -->
+  <aura:attribute name="isButtonActive" type="Boolean" default="true" />
+  <aura:attribute
+    name="newCharacter"
+    type="SWCharacter__c"
+    default="{ 'sobjectType': 'SWCharacter__c',
+                             'Name__c': '',
+                             'Height__c': 0,
+                             'Gender__c': '',
+                             'Hair_Color__c': '',
+                             'Eye_Color__c': '',
+                             'URL__c': '',
+                             'Homeworld__c': ''}"
+  />
+  <!-- Event -->
+  <aura:registerEvent name="createCharacter" type="c:charactersItemUpdate" />
+
+  <div aria-labelledby="newswform">
+    <!-- BOXED AREA -->
+    <fieldset class="slds-box slds-theme--default slds-container--small">
+      <legend
+        id="newswform"
+        class="slds-text-heading--small slds-p-vertical--medium"
+      >
+        Add Starwars Character
+      </legend>
+
+      <!-- CREATE NEW CHARACTER FORM -->
+      <form>
+        <lightning:input
+          aura:id="swformid"
+          label="ID"
+          name="swid"
+          value="{!v.newCharacter.ID__c}"
+          required="true"
+        />
+        <lightning:button
+          label="Search Character"
+          class="slds-m-top--medium"
+          variant="brand"
+          onclick="{!c.searchCharacter}"
+        />
+        <lightning:input
+          aura:id="swformname"
+          type="text"
+          label="Character Name"
+          name="swname"
+          value="{!v.newCharacter.Name__c}"
+          disabled="true"
+          onchange="{!c.activeButton}"
+          required="true"
+        />
+        <lightning:input
+          type="number"
+          aura:id="swformheight"
+          label="Height"
+          name="swheight"
+          min="0.1"
+          step="0.01"
+          value="{!v.newCharacter.Height__c}"
+          disabled="true"
+          messageWhenRangeUnderflow="Enter a height that's at least 0.10."
+          required="true"
+        />
+        <lightning:input
+          aura:id="swformgender"
+          label="Gender"
+          name="swgender"
+          value="{!v.newCharacter.Gender__c}"
+          onchange="{!c.handleChange}"
+          disabled="true"
+          required="true"
+        />
+        <lightning:input
+          type="text"
+          aura:id="swformhaircolor"
+          label="Hair Color"
+          name="swhaircolor"
+          value="{!v.newCharacter.Hair_Color__c}"
+          onchange="{!c.handleChange}"
+          disabled="true"
+          required="true"
+        />
+        <lightning:input
+          type="text"
+          aura:id="swformeyecolor"
+          label="Eye Color"
+          name="sweyecolor"
+          value="{!v.newCharacter.Eye_Color__c}"
+          onchange="{!c.handleChange}"
+          disabled="true"
+          required="true"
+        />
+        <lightning:input
+          type="url"
+          aura:id="swformurl"
+          label="URL"
+          name="swurl"
+          value="{!v.newCharacter.URL__c}"
+          disabled="true"
+          required="true"
+        />
+        <lightning:input
+          type="url"
+          aura:id="swformhomeworld"
+          label="Home World"
+          name="swhomeworld"
+          value="{!v.newCharacter.Homeworld__c}"
+          disabled="true"
+          required="true"
+        />
+        <lightning:button
+          label="Create Character"
+          class="slds-m-top--medium"
+          variant="brand"
+          onclick="{!c.clickCreateCharacter}"
+          disabled="{!v.isButtonActive}"
+        />
+      </form>
+    </fieldset>
+  </div>
+</aura:component>

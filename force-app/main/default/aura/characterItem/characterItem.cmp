@@ -1,0 +1,36 @@
+<aura:component>
+  <!-- Attributes -->
+  <aura:attribute name="swcharacter" type="SWCharacter__c" />
+
+  <!-- Event -->
+  <aura:registerEvent name="updateCharacter" type="c:charactersItemUpdate" />
+
+  <!-- Card -->
+  <lightning:card
+    title="{!v.swcharacter.Name__c}"
+    iconName="standard:scan_card"
+    class="slds-text-heading--medium"
+  >
+    <p class="slds-p-horizontal--small">
+      ID: {!v.swcharacter.ID__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      Height: {!v.swcharacter.Height__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      Gender: {!v.swcharacter.Gender__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      Hair Color: {!v.swcharacter.Hair_Color__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      Eye Color: {!v.swcharacter.Eye_Color__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      URL: {!v.swcharacter.URL__c}
+    </p>
+    <p class="slds-p-horizontal--small">
+      Homeworld: {!v.swcharacter.Homeworld__c}
+    </p>
+  </lightning:card>
+</aura:component>

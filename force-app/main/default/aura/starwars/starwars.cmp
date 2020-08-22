@@ -1,0 +1,53 @@
+<aura:component controller="StarwarsController">
+  <!-- Attributes -->
+  <aura:attribute name="swcharacters" type="SWCharacter__c[]" />
+
+  <!-- Handlers -->
+  <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+  <aura:handler
+    name="createCharacter"
+    event="c:charactersItemUpdate"
+    action="{!c.handleCreateCharacter}"
+  />
+  <aura:handler
+    name="updateCharacter"
+    event="c:charactersItemUpdate"
+    action="{!c.handleUpdateCharacter}"
+  />
+
+  <!-- PAGE HEADER -->
+  <lightning:layout class="slds-page-header slds-page-header--object-home">
+    <lightning:layoutItem>
+      <lightning:icon
+        iconName="standard:scan_card"
+        alternativeText="Starwars Form"
+      />
+    </lightning:layoutItem>
+    <lightning:layoutItem padding="horizontal-small">
+      <div class="page-section page-header">
+        <h1 class="slds-text-heading--label">Form</h1>
+        <h2 class="slds-text-heading--medium">Starwars Form</h2>
+      </div>
+    </lightning:layoutItem>
+  </lightning:layout>
+
+  <!-- NEW STARWARS FORM -->
+  <lightning:layout>
+    <lightning:layoutItem padding="around-small" size="6">
+      <!-- CREATE NEW CHARACTER -->
+      <div aria-labelledby="newswform">
+        <c:starwarsForm />
+      </div>
+    </lightning:layoutItem>
+  </lightning:layout>
+
+  <!-- EXISTING CHARACTERS -->
+  <div class="slds-grid slds-m-top--large">
+    <!-- CHARACTERS LIST -->
+    <div
+      class="slds-col slds-col-rule--right slds-p-around--small slds-size--8-of-12"
+    >
+      <c:charactersList swcharacters="{!v.swcharacters}" />
+    </div>
+  </div>
+</aura:component>
